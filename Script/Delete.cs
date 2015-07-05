@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Delete : MonoBehaviour {
 	GameObject gm;
-	void OnCollisionEnter2D(Collision2D other)
+	void OnTriggerEnter2D(Collider2D other)
 	{
 		if (other.gameObject.tag == "Enemy") {
 			other.gameObject.SetActive(false);
@@ -14,7 +14,7 @@ public class Delete : MonoBehaviour {
 			else{
 				other.gameObject.GetComponent<AIEnemy>().Reset();
 			}
-			PlayerPrefs.SetFloat("Money",PlayerPrefs.GetFloat("Money")+50.0f);
+			other.gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
 				}
 	}
 }

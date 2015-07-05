@@ -25,10 +25,14 @@ public class Attack : MonoBehaviour {
 			dir *= 300 * Time.fixedDeltaTime;
 			other.gameObject.GetComponent<Rigidbody2D>().AddForce(dir, fMode);
 			if (other.gameObject.name == "Enemy_T2" || other.gameObject.name == "Enemy_T3")
+			{
 				other.gameObject.GetComponent<AIEnemy>().HP -= Mathf.Pow(1.5f, PlayerPrefs.GetFloat("MassL"))*PlayerPrefs.GetFloat("Speed");
+				other.gameObject.GetComponent<AIEnemy>().HP_Bar();
+			}
 			else if (other.gameObject.name == "Enemy_T1")
 			{
 				other.gameObject.GetComponent<Seek2>().HP -= Mathf.Pow(1.5f, PlayerPrefs.GetFloat("MassL"))*PlayerPrefs.GetFloat("Speed");;
+				other.gameObject.GetComponent<Seek2>().HP_Bar();
 			}
 			if (other.gameObject.name == "Enemy_T1")
 			{
@@ -46,7 +50,10 @@ public class Attack : MonoBehaviour {
 				}
 			}
 			if (camera.gameObject.GetComponent<JM>().immotal == false)
+			{
 				PlayerPrefs.SetFloat("HP", PlayerPrefs.GetFloat("HP") - PlayerPrefs.GetFloat("EDamage"));
+			}
+			gameObject.GetComponent<SWING>().gm.GetComponent<GM>().SendMessage("UpData");
 			PlayEff(Eff.gameObject);
 			
 		}

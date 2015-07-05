@@ -26,6 +26,11 @@ public class GM : MonoBehaviour {
 	public GameObject HPPrice;
 	public GameObject SpeedPrice;
 	public GameObject MassPrice;
+	public GameObject Player;
+	void Awake()
+	{
+		UpData ();
+	}
 	// Use this for initialization
 	void Start () {
 				PlayerPrefs.SetInt ("StageLevel", 1);
@@ -53,7 +58,14 @@ public class GM : MonoBehaviour {
 				money = PlayerPrefs.GetFloat ("Money");
 
 		}
-
+	public void HP_Bar()
+	{
+		var Bar = Player.transform.GetChild(10);
+		var P_HP = Bar.transform.GetChild (1);
+		P_HP.localScale = new Vector3(136-(100-HP),34,1);
+		P_HP.localPosition = new Vector3(P_HP.transform.position.x-(100 - HP) * 0.5f,P_HP.transform.position.y,1);
+		
+	}
 	// Update is called once per frame
 	public void UpData () {
 		MassLevel = PlayerPrefs.GetInt("MassL");
@@ -61,6 +73,7 @@ public class GM : MonoBehaviour {
 		SpeedLevel = PlayerPrefs.GetInt ("SpeedL");
 
 		HP = PlayerPrefs.GetFloat ("HP");
+		HP_Bar ();
 		money = PlayerPrefs.GetFloat("Money");
 		Speed = PlayerPrefs.GetFloat ("Speed");
 		SpeedE = PlayerPrefs.GetFloat ("SpeedE");

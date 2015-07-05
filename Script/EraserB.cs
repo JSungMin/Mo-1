@@ -35,6 +35,7 @@ public class EraserB : MonoBehaviour {
 			var Enemy = other.gameObject;
 			if (Enemy.name == "Enemy_T2" || Enemy.name == "Enemy_T3") {
 				Enemy.GetComponent<AIEnemy> ().HP -= 20;
+				other.gameObject.GetComponent<AIEnemy>().HP_Bar();
 				if(other.gameObject.GetComponent<AIEnemy>().HP<=0)
 				{
 					other.gameObject.GetComponent<AIEnemy>().Reset();
@@ -43,6 +44,7 @@ public class EraserB : MonoBehaviour {
 			}
 			if (Enemy.name == "Enemy_T1") {
 				Enemy.GetComponent<Seek2> ().HP -= 20;
+				other.gameObject.GetComponent<Seek2>().HP_Bar();
 				if(other.gameObject.GetComponent<Seek2>().HP<=0)
 				{
 					other.gameObject.GetComponent<Seek2>().Reset();

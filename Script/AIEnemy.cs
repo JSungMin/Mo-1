@@ -42,9 +42,18 @@ public class AIEnemy : MonoBehaviour {
 	public void Reset()
 	{
 		HP = 100;
+		HP_Bar ();
 		transform.localPosition = fVec;
 	}
+	public void HP_Bar()
+	{
+		Debug.Log ("damaged");
+		var Bar = transform.GetChild(6);
+		var E_HP = Bar.transform.GetChild (1);
+		E_HP.localScale = new Vector3(136-(100-HP),34,1);
+		E_HP.localPosition = new Vector3(E_HP.transform.position.x-(100 - HP) * 0.5f,E_HP.transform.position.y,1);
 
+	}
 	//AI_T2
 	void Type2Moving(Vector3 dir, float distance/*Block amount*/, Vector3 firstVec){
 		Vector3 nowVec = transform.localPosition;

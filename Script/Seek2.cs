@@ -25,7 +25,19 @@ public class Seek2 : MonoBehaviour{
 	}
 	public void Reset()
 	{
+		HP = 100;
 		transform.localPosition = FirstPosition;
+		HP_Bar ();
+	}
+
+	public void HP_Bar()
+	{
+		Debug.Log ("damaged");
+		var Bar = transform.GetChild(6);
+		var E_HP = Bar.transform.GetChild (1);
+		E_HP.localScale = new Vector3(136-(100-HP),34,1);
+		E_HP.localPosition = new Vector3(E_HP.transform.position.x-(100 - HP) * 0.5f,E_HP.transform.position.y,1);
+		
 	}
 
 	void OnCollisionEnter2D(Collision2D other)
